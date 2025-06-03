@@ -1,0 +1,153 @@
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body como flex container para layout vertical */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* altura completa viewport */
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #b2dfdb; /* Fondo suave (tecnología) */
+    color: #1f3a2c; /* Texto general (verde-gris profundo) */
+    line-height: 1.6;
+  }
+  
+  /* Header fijo arriba */
+  header {
+    background-color: #a5d6a7; /* Verde armónico (naturaleza/ciencia) */
+    color: #1b5e20; /* Títulos fuertes (verde oscuro profesional) */
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    font-weight: 700;
+  }
+  
+  /* Main que crece para empujar footer abajo */
+  main {
+    flex: 1; /* ocupa el espacio restante */
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center; /* centra vertical */
+    padding: 2rem;
+  }
+  
+  /* Grid de cards */
+  .cards-container {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    max-width: 1100px;
+  }
+  
+  /* Card */
+  .card {
+    perspective: 1200px;
+    height: 320px;
+  }
+  
+  /* Card interior */
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  
+  /* Hover efecto flip */
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Front y Back */
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(27, 94, 32, 0.3);
+    text-align: center;
+    background: #d0f4de; /* Verde menta claro (refrescante) */
+    color: #1f3a2c; /* Texto general */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Al pasar el mouse cambio sutil de fondo */
+  .card-front:hover,
+  .card-back:hover {
+    background-color: #a5d6a7; /* Verde armónico */
+  }
+  
+  /* Imágenes */
+  .card-front img,
+  .card-back img {
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 8px #1b5e20aa;
+  }
+  
+  /* Card back con flip */
+  .card-back {
+    transform: rotateY(180deg);
+  }
+  
+  /* Tipografía */
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: #1b5e20; /* Títulos fuertes */
+    text-shadow: 0 0 3px #a5d6a7cc;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #1b5e20;
+  }
+  
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1b5e20;
+  }
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #1f3a2c;
+    text-shadow: 0 0 2px #b2dfdbcc;
+  }
+  
+  /* Footer fijo abajo */
+  footer {
+    background-color: #a5d6a7; /* Verde armónico */
+    color: #1b5e20; /* Títulos fuertes */
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto; /* empuja al fondo */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.15);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  
+  
