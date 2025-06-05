@@ -1,131 +1,165 @@
-/* General Reset y Configuración básica*/
+/* General Reset y Configuración básica */
 * {
-    margin: 0;        /*Elimina márgenes por defecto en todos los elementos*/
-    padding: 0;       /*Elimina relleno por defecto en todos los elementos*/
-    box-sizing: border-box;     /*Hace que el tamaño de los elementos inclya padding y border*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-
-    body {
-    display: flex;    /*Activa Flexbox para el body*/
-    flex-direction: column;     /*Coloca los elementos en columnas*/
-    min-height: 100vh;    /* Asegura que todo el body ocupe toda la altura de la pantalla */
-    font-family: 'Segoe UI', sans-serif;    /*Fuente del texto*/
-    background: linear-gradient(to right, #eafdfb, #e0ffe3);    /*Fondo con degradado en horizonatal*/
-    color: #1f3a2c;     /*Color del texto*/
-    line-height: 1.6;    /*Espaciado entre líneas*/
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #eafdfb, #e0ffe3);
+    color: #1f3a2c;
+    line-height: 1.6;
   }
   
   /* Header & Footer */
   header, footer {
-    background: linear-gradient(to right, #b2dfdb, #a5d6a7);    /* Degradado de fondo para header y footer */  
-    color: #1b3b2f;     /* Color del texto en header y footer */
-    padding: 1rem;    /* Espaciado interior */
-    text-align: center;     /* Centra el texto */
-    font-weight: 600;     /* Negrita para el texto */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);     /* Sombra sutil para header y footer */
+    background: linear-gradient(to right, #b2dfdb, #a5d6a7);
+    color: #1b3b2f;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navegación entre versiones */
+  .version-nav {
+    margin-top: 1rem;
+  }
+  
+  .version-nav a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #ffffff;
+    color: #1b3b2f;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .version-nav a:hover {
+    background: #e8f5e8;
+    transform: translateY(-2px);
   }
   
   /* Main toma todo el espacio restante para centrar contenido */
   main {
-    flex: 1;    /* Ocupa todo el epacio disponible */
-    display: flex;    /*Flexbox para centrar contenido*/
-    justify-content: center;    /* centra horizontal */
-    align-items: center;    /*centra vertical */
-    padding: 2rem;    /*Espaciado interior */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
   }
   
   /* Contenedor Grid centrado y con ancho máximo */
   .cards-container {
-    display: grid;    /*Activa Grid layout*/
-    gap: 2rem;    /*Espacio entre cards*/
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));    /* Crea columnas flexibles que se adaptan al tamaño de la pantalla */
-    width: 100%;    /* Ocupa todo el ancho disponible */
-    max-width: 1100px;    /* Límite para no estirar demasiado */
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    max-width: 1100px;
   }
   
-  /* Ajustamos la altura y la proporción de las cards */
+  /* Estructura de la tarjeta con checkbox oculto */
   .card {
-    perspective: 1200px;    /*Perspectiva para el efecto 3D*/
-    height: 320px;    /* Altura fija para que no baje */
+    perspective: 1200px;
+    height: 320px;
   }
   
-  /* Quitamos padding-top y usamos height 100% para inner */
+  .card-checkbox {
+    display: none;
+  }
+  
+  .card-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  /* Contenedor interno de la tarjeta */
   .card-inner {
-    position: relative;     /*Posicionamiento relativo para el efecto 3D*/
-    width: 100%;    /* Ocupa todo el ancho de la card */
-    height: 100%;     /* Ocupa toda la altura fija */
-    transition: transform 0.8s ease-in-out;     /* Transición suave para el efecto 3D */
-    transform-style: preserve-3d;     /* Mantiene el efecto 3D */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+    transform-style: preserve-3d;
   }
   
-  .card:hover .card-inner {
-    transform: rotateY(180deg);     /* Rota la card al pasar el ratón */
+  /* Aplicamos la rotación cuando el checkbox está marcado */
+  .card-checkbox:checked + .card-label .card-inner {
+    transform: rotateY(180deg);
   }
   
   /* Estilos comunes para el front y back de la card */
   .card-front,
   .card-back {
-    position: absolute;     /*Posicionamiento absoluto para superponer front y back*/
-    width: 100%; 
+    position: absolute;
+    width: 100%;
     height: 100%;
     padding: 1rem;
-    border-radius: 16px;    /* Bordes redondeados */
-    backface-visibility: hidden;    /* Oculta el lado opuesto al girar */
-    display: flex;    /*Flexbox para centrar contenido*/
-    flex-direction: column;     /* Coloca el contenido en columnas */
-    align-items: center;     /* Centra verticalmente */
-    justify-content: center;    /* Centra horizontalmente */
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);    /* Sombra sutil para las cards */
-    text-align: center;     /* Centra el texto en ambas caras */
-    background: #ffffff;    /* Fondo blanco para ambas caras */
+    border-radius: 16px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background: #ffffff;
   }
   
-  /* Colores de Front y Back cards  */
+  /* Colores de Front y Back cards */
   .card-front {
-    background: #d0f4de;    /* Color de fondo para la cara frontal */
+    background: #d0f4de;
   }
   
   .card-back {
-    background: #b2dfdb;      /* Color de fondo para la cara trasera */
-    transform: rotateY(180deg);     /* Rota la cara trasera para que esté oculta inicialmente */
+    background: #b2dfdb;
+    transform: rotateY(180deg);
   }
   
-  /* Imagenes */
+  /* Imágenes */
   .card-front img,
   .card-back img {
-    max-width: 100%;     /* Asegura que la imagen no se salga de la card */
-    height: 140px;    /* Altura fija para las imágenes */
-    object-fit: cover;   /* Recorta la imagen sin deformarla */
-    border-radius: 10px;   /* Bordes redondeados para las imágenes */
-    margin-bottom: 0.5rem;   /* Espacio debajo de la imagen */
-  }
-
-  .vertical-image {
-    width: auto;   /* Ancho automático para mantener la proporción */       
-    max-height: 140px;    /* Altura máxima para la imagen vertical */
-    object-fit: contain;  /* Mantiene la proporción de la imagen vertical */
-    margin: 25px auto 10px; /* más margen arriba, menos abajo */
-    display: block;  /* Asegura que la imagen se centre horizontalmente */
-    border-radius: 10px;   /* Bordes redondeados para la imagen vertical */
+    max-width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
   }
   
+  .vertical-image {
+    width: auto;
+    max-height: 140px;
+    object-fit: contain;
+    margin: 25px auto 10px;
+    display: block;
+    border-radius: 10px;
+  }
   
   /* Tipografía */
   h1 {
-    font-size: 2rem;   /* Tamaño del título principal */
+    font-size: 2rem;
     color: #1b5e20;
-    margin-bottom: 0.5rem;   /* Espacio debajo del título */
+    margin-bottom: 0.5rem;
   }
   
   h2 {
     font-size: 1.4rem;
-    margin-top: 0.5rem;   /* Espacio encima del subtítulo */
+    margin-top: 0.5rem;
     color: #2e7d32;
   }
   
   h3 {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;    /* Espacio debajo del subtítulo */
+    margin-bottom: 0.5rem;
     color: #33691e;
   }
   
@@ -135,36 +169,74 @@
   }
   
   /* Efecto al pasar el cursor */
-  .card:hover {
-    filter: brightness(1.03);   /* Aumenta el brillo al pasar el ratón */
-    box-shadow: 0 0 15px rgba(100, 255, 200, 0.2);   /* Sombra verde suave al pasar el ratón */
+  .card-label:hover .card-inner {
+    box-shadow: 0 0 10px rgba(100, 255, 200, 0.15);
   }
   
+  /* Indicador visual de que se puede hacer click */
+  .card-label::after {
+    content: "👆 Haz click para voltear";
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  .card-label:hover::after {
+    opacity: 1;
+  }
+  
+  /* Ocultar el indicador cuando la tarjeta está volteada */
+  .card-checkbox:checked + .card-label::after {
+    content: "👆 Haz click para regresar";
+  }
+  
+  /* Evita efecto hover cuando la tarjeta está girada */
+.card-checkbox:checked + .card-label:hover .card-inner {
+    filter: none;
+    box-shadow: none;
+  }
+
+  .version-nav a.active {
+    background: #9bb99b;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0, 50, 0, 0.2);
+  }
   
   /* Media Queries para Responsividad */
-
   @media (max-width: 600px) {
     h1 {
-      font-size: 1.5rem;   /* Tamaño del título principal más pequeño en móviles */
+      font-size: 1.5rem;
     }
   
     .card {
-      height: auto;   /* Altura automática para cards en móviles */
-    }
-  
-    .card-inner {
-      flex-direction: column; /* Coloca el contenido en columnas en móviles */
-      height: auto;    /* Altura automática para inner en móviles */
+      height: 350px;
     }
   
     .card-front,
     .card-back {
-      padding: 0.8rem;  /* Menos padding en móviles */
+      padding: 0.8rem;
     }
   
     .card-front img,
     .card-back img,
-    .vertical-img {
-      height: 120px;   /* Altura de imagen más pequeña en móviles */
+    .vertical-image {
+      height: 120px;
+    }
+  
+    .version-nav a {
+      display: block;
+      margin: 0.3rem 0;
     }
   }
+
+  

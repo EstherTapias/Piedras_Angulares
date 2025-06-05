@@ -1,96 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>🔬Piedras Angulares👩‍🦳</title>
-    <link rel="stylesheet" href="style2.css">
-    <meta name="theme-color" content="#a5d6a7"> <!--para que el navegador móvil adopte el color del sitio-->
-
+    <link rel="stylesheet" href="style2.css"/>
+    <meta name="theme-color" content="#a5d6a7"/>
 </head>
 <body>
     <header>
-        <nav>
-            <h1>🔬 Mujeres Pioneras en Ciencia y Tecnología 🔬</h1>
-            <p>Un sitio web para compartir y aprender sobre las piedras angulares de la vida.</p>
-        </nav>
+        <h1>🔬 Mujeres Pioneras en Ciencia y Tecnología 🔬</h1>
+        <p>Un sitio web para compartir y aprender sobre las piedras angulares de la vida.</p>
         <nav class="version-nav">
-          <a href="index.html">Versión Hover</a>
-          <a href="index2.html">Versión Click</a>
+            <a href="index.html">Versión Hover</a>
+            <a href="index2.html" class="active">Versión Click</a>
         </nav>
     </header>
+
     <main>
         <section class="cards-container">
-            <!-- Tarjeta 1. Ynes Mexía -->
-             <article class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="files\ynes-mexia-planta.webp" alt="notas sobre plantas" class="vertical-image">
-                        <h2>🌿 Exploración Botánica </h2>
-                        <p>Realizó más de 150,000 recolecciones de plantas, muchas desconocidas hasta entonces.</p>
-                    </div>
-                    <div class="card-back">
-                        <img src="files\Ynes-Mexia.avif" alt="Ynes Mexía" class="profile-image">
-                        <h3>Ynes Mexía</h3>
-                        <p>Botánica y exploradora que descubrió más de 500 especies nuevas en América Latina.</p>
-                    </div>
-                </div>
-             </article>
-
-            <!-- Tarjeta 2. Mary Golda Ross -->
-             <article class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img src="files\Mary-Golda-Ross-cohete.jpg" alt="Cohete" class="card-image">
-                        <h2>🚀 Ingeniería Aeroespacial</h2>
-                        <p>Pionera en diseño de naves espaciales y satélites en Lockheed.</p>
-                    </div>
-                    <div class="card-back">
-                        <img src="files\Mary-Golda-Ross.jpg" alt="Mary Golda Ross" class="profile-image">
-                        <h3>Mary Golda Ross</h3>
-                        <p>Primera ingeniera indígena norteamericana. Trabajó en misiones interplanetarias y proyectos secretos durante la Guerra Fría.</p>
-                    </div>
-                </div>
-             </article>
-
-            <!-- Tarjeta 3. Dian Fossey -->
+            <!-- Tarjeta 1 -->
             <article class="card">
-                <div class="card-inner">
-                  <div class="card-front">
-                    <img src="files\Dian-Fossey-gorila.jfif" alt="Gorila de montaña" class="card-image" />
-                    <h2>🦍 Conservación de los Gorilas</h2>
-                    <p>Luchó por salvar a los gorilas de montaña de la extinción.</p>
-                  </div>
-                  <div class="card-back">
-                    <img src="files\Dian-Fossey.jpg" alt="Dian Fossey" class="profile-image" />
-                    <h3>Dian Fossey</h3>
-                    <p>Primatóloga y conservacionista. Estudió a los gorilas en Ruanda durante años y creó un legado duradero de protección y concienciación ambiental.</p>
-                  </div>
-                </div>
-              </article>
-        
-              <!-- Florence Augusta Merriam Bailey -->
-              <article class="card">
-                <div class="card-inner">
-                  <div class="card-front">
-                    <img src="files\Florence-ave.jpg" alt="Aves silvestres" class="card-image"/>
-                    <h2>🐦 Observación de Aves</h2>
-                    <p>Revolucionó la ornitología usando prismáticos en vez de armas.</p>
-                  </div>
-                  <div class="card-back">
-                    <img src="files\Florence-Augusta-Merriam-Bailey.jpg" alt="Florence Augusta Merriam Bailey" class="profile-image" />
-                    <h3>Florence A. M. Bailey</h3>
-                    <p>Ornitóloga y escritora. Defensora del estudio ético de las aves, escribió el primer libro de campo de aves en EE.UU.</p>
-                  </div>
-                </div>
-              </article>
+                <input type="checkbox" id="card1" class="card-checkbox">
+                <label for="card1" class="card-label">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="files/ynes-mexia-planta.webp" alt="notas sobre plantas" class="vertical-image"/>
+                            <h2>🌿 Exploración Botánica</h2>
+                            <p>Realizó más de 150,000 recolecciones de plantas, muchas desconocidas hasta entonces.</p>
+                        </div>
+                        <div class="card-back">
+                            <img src="files/Ynes-Mexia.avif" alt="Ynes Mexía" class="profile-image"/>
+                            <h3>Ynes Mexía</h3>
+                            <p>Botánica y exploradora que descubrió más de 500 especies nuevas en América Latina.</p>
+                        </div>
+                    </div>
+                </label>
+            </article>
 
+            <!-- Tarjeta 2 -->
+            <article class="card">
+                <input type="checkbox" id="card2" class="card-checkbox">
+                <label for="card2" class="card-label">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="files/Mary-Golda-Ross-cohete.jpg" alt="Cohete" class="card-image"/>
+                            <h2>🚀 Ingeniería Aeroespacial</h2>
+                            <p>Pionera en diseño de naves espaciales y satélites en Lockheed.</p>
+                        </div>
+                        <div class="card-back">
+                            <img src="files/Mary-Golda-Ross.jpg" alt="Mary Golda Ross" class="profile-image"/>
+                            <h3>Mary Golda Ross</h3>
+                            <p>Primera ingeniera indígena norteamericana. Trabajó en misiones interplanetarias y proyectos secretos durante la Guerra Fría.</p>
+                        </div>
+                    </div>
+                </label>
+            </article>
+
+            <!-- Tarjeta 3 -->
+            <article class="card">
+                <input type="checkbox" id="card3" class="card-checkbox">
+                <label for="card3" class="card-label">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="files/Dian-Fossey-gorila.jfif" alt="Gorila de montaña" class="card-image"/>
+                            <h2>🦍 Conservación de los Gorilas</h2>
+                            <p>Luchó por salvar a los gorilas de montaña de la extinción.</p>
+                        </div>
+                        <div class="card-back">
+                            <img src="files/Dian-Fossey.jpg" alt="Dian Fossey" class="profile-image"/>
+                            <h3>Dian Fossey</h3>
+                            <p>Primatóloga y conservacionista. Estudió a los gorilas en Ruanda durante años y creó un legado duradero de protección y concienciación ambiental.</p>
+                        </div>
+                    </div>
+                </label>
+            </article>
+
+            <!-- Tarjeta 4 -->
+            <article class="card">
+                <input type="checkbox" id="card4" class="card-checkbox">
+                <label for="card4" class="card-label">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="files/Florence-ave.jpg" alt="Aves silvestres" class="card-image"/>
+                            <h2>🐦 Observación de Aves</h2>
+                            <p>Revolucionó la ornitología usando prismáticos en vez de armas.</p>
+                        </div>
+                        <div class="card-back">
+                            <img src="files/Florence-Augusta-Merriam-Bailey.jpg" alt="Florence Augusta Merriam Bailey" class="profile-image"/>
+                            <h3>Florence A. M. Bailey</h3>
+                            <p>Ornitóloga y escritora. Defensora del estudio ético de las aves, escribió el primer libro de campo de aves en EE.UU.</p>
+                        </div>
+                    </div>
+                </label>
+            </article>
         </section>
     </main>
+
     <footer>
         <p>👩‍🔬 Proyecto educativo para visibilizar a mujeres olvidadas por la historia científica.</p>
     </footer>
-    
-    
 </body>
 </html>
+
