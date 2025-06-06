@@ -170,6 +170,13 @@ p {
   box-shadow: 0 0 5px rgba(0, 50, 0, 0.2);
   
 }
+.card:hover {
+  z-index: 10;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg) scale(1.25);
+}
 
 
 
@@ -207,7 +214,7 @@ p {
     gap: 1.5rem;
     grid-template-columns: 1fr;
   }
-}
   
+}
   
   
