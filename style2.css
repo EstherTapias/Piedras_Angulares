@@ -1,255 +1,316 @@
 /* General Reset y Configuración básica */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #eafdfb, #e0ffe3);
+  color: #1f3a2c;
+  line-height: 1.6;
+}
+
+/* Header & Footer */
+header, footer {
+  background: linear-gradient(to right, #b2dfdb, #a5d6a7);
+  color: #1b3b2f;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navegación entre versiones */
+.version-nav {
+  margin-top: 1rem;
+}
+
+.version-nav a {
+  display: inline-block;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ffffff;
+  color: #1b3b2f;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.version-nav a:hover {
+  background: #e8f5e8;
+  transform: translateY(-2px);
+}
+
+/* Main toma todo el espacio restante para centrar contenido */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Contenedor Grid centrado y con ancho máximo */
+.cards-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Estructura de la tarjeta con checkbox oculto */
+.card {
+  perspective: 1200px;
+  height: 360px; /* aumentado de 320px */
+}
+
+.card-checkbox {
+  display: none;
+}
+
+.card-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative; /* para posicionar boton saber más */
+}
+
+/* Contenedor interno de la tarjeta */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Aplicamos la rotación cuando el checkbox está marcado */
+.card-checkbox:checked + .card-label .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Estilos comunes para el front y back de la card */
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #ffffff;
+}
+
+/* Colores de Front y Back cards */
+.card-front {
+  background: #d0f4de;
+}
+
+.card-back {
+  background: #b2dfdb;
+  transform: rotateY(180deg);
+}
+
+/* Imágenes */
+.card-front img,
+.card-back img {
+  max-width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.vertical-image {
+  width: auto;
+  max-height: 140px;
+  object-fit: contain;
+  margin: 25px auto 10px;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Tipografía */
+h1 {
+  font-size: 2rem;
+  color: #1b5e20;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+  color: #2e7d32;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #33691e;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #1f3a2c;
+}
+
+/* Efecto al pasar el cursor */
+.card-label:hover .card-inner {
+  box-shadow: 0 0 10px rgba(100, 255, 200, 0.15);
+}
+
+.card-label:hover {
+  transform: scale(1.25);
+  z-index: 2;
+}
+
+.card:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 0 15px rgba(100, 255, 200, 0.2);
+}
+
+/* Indicador visual de que se puede hacer click */
+/* -- Cambiado para que aparezca arriba, más pequeño y translúcido en versión web -- */
+.card-label::after {
+  content: "👆 Haz click para voltear";
+  position: absolute;
+  top: 8px; /* arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.3); /* más translúcido */
+  color: white;
+  padding: 0.15rem 0.4rem;
+  border-radius: 12px;
+  font-size: 0.65rem; /* tamaño más pequeño */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.card-label:hover::after {
+  opacity: 1;
+}
+
+/* Cambia texto cuando tarjeta está volteada */
+.card-checkbox:checked + .card-label::after {
+  content: "👆 Haz click para regresar";
+}
+
+/* Evita efecto hover cuando la tarjeta está girada */
+.card-checkbox:checked + .card-label:hover .card-inner {
+  filter: none;
+  box-shadow: none;
+}
+
+/* Botón Saber más sin recuadro y con efectos */
+.learn-more {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  padding: 0;
+  background: none;
+  border: none;
+  color: #1b3b2f;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 5;
+}
+
+.learn-more:hover {
+  color: #004d40;
+  text-decoration: underline;
+}
+
+/* Navegación activa */
+.version-nav a.active {
+  background: #9bb99b;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 50, 0, 0.2);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 600px) {
+  h1 {
+      font-size: 1.5rem;
   }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to right, #eafdfb, #e0ffe3);
-    color: #1f3a2c;
-    line-height: 1.6;
-  }
-  
-  /* Header & Footer */
-  header, footer {
-    background: linear-gradient(to right, #b2dfdb, #a5d6a7);
-    color: #1b3b2f;
-    padding: 1rem;
-    text-align: center;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Navegación entre versiones */
-  .version-nav {
-    margin-top: 1rem;
-  }
-  
-  .version-nav a {
-    display: inline-block;
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem;
-    background: #ffffff;
-    color: #1b3b2f;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .version-nav a:hover {
-    background: #e8f5e8;
-    transform: translateY(-2px);
-  }
-  
-  /* Main toma todo el espacio restante para centrar contenido */
-  main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-  }
-  
-  /* Contenedor Grid centrado y con ancho máximo */
-  .cards-container {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    width: 100%;
-    max-width: 1100px;
-  }
-  
-  /* Estructura de la tarjeta con checkbox oculto */
+
   .card {
-    perspective: 1200px;
-    height: 320px;
+      height: 350px;
   }
-  
-  .card-checkbox {
-    display: none;
-  }
-  
-  .card-label {
-    display: block;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Contenedor interno de la tarjeta */
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s ease-in-out;
-    transform-style: preserve-3d;
-  }
-  
-  /* Aplicamos la rotación cuando el checkbox está marcado */
-  .card-checkbox:checked + .card-label .card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  /* Estilos comunes para el front y back de la card */
+
   .card-front,
   .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-    border-radius: 16px;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background: #ffffff;
-  }
-  
-  /* Colores de Front y Back cards */
-  .card-front {
-    background: #d0f4de;
-  }
-  
-  .card-back {
-    background: #b2dfdb;
-    transform: rotateY(180deg);
-  }
-  
-  /* Imágenes */
-  .card-front img,
-  .card-back img {
-    max-width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .vertical-image {
-    width: auto;
-    max-height: 140px;
-    object-fit: contain;
-    margin: 25px auto 10px;
-    display: block;
-    border-radius: 10px;
-  }
-  
-  /* Tipografía */
-  h1 {
-    font-size: 2rem;
-    color: #1b5e20;
-    margin-bottom: 0.5rem;
-  }
-  
-  h2 {
-    font-size: 1.4rem;
-    margin-top: 0.5rem;
-    color: #2e7d32;
-  }
-  
-  h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #33691e;
-  }
-  
-  p {
-    font-size: 0.95rem;
-    color: #1f3a2c;
-  }
-  
-  /* Efecto al pasar el cursor */
-  .card-label:hover .card-inner {
-    box-shadow: 0 0 10px rgba(100, 255, 200, 0.15);
-  }
-
-  .card-label:hover {
-    transform: scale(1.25);
-    z-index: 2;
-  }
-
-  
-  .card:hover {
-   filter: brightness(1.03);
-    box-shadow: 0 0 15px rgba(100, 255, 200, 0.2);
-  }
-
-  
-  /* Indicador visual de que se puede hacer click */
-  .card-label::after {
-    content: "👆 Haz click para voltear";
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 0.3rem 0.6rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 10;
-  }
-  
-  .card-label:hover::after {
-    opacity: 1;
-  }
-  
-  /* Ocultar el indicador cuando la tarjeta está volteada */
-  .card-checkbox:checked + .card-label::after {
-    content: "👆 Haz click para regresar";
-  }
-  
-  /* Evita efecto hover cuando la tarjeta está girada */
-.card-checkbox:checked + .card-label:hover .card-inner {
-    filter: none;
-    box-shadow: none;
-  }
-
-  .version-nav a.active {
-    background: #9bb99b;
-    font-weight: bold;
-    box-shadow: 0 0 5px rgba(0, 50, 0, 0.2);
-  }
-  
-  /* Media Queries para Responsividad */
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-  
-    .card {
-      height: 350px;
-    }
-  
-    .card-front,
-    .card-back {
       padding: 0.8rem;
-    }
-  
-    .card-front img,
-    .card-back img,
-    .vertical-image {
+  }
+
+  .card-front img,
+  .card-back img,
+  .vertical-image {
       height: 120px;
-    }
-  
-    .version-nav a {
+  }
+
+  .version-nav a {
       display: block;
       margin: 0.3rem 0;
-    }
   }
+
+  /* Ajuste para que el cartel no tape contenido y esté más arriba en móvil */
+  .card-label::after {
+    bottom: 50px; /* subido para no tapar botones o texto */
+    top: auto; /* desactivo el top para que no se sobreponga */
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: rgba(0, 0, 0, 0.5); /* un poco menos translúcido en móvil */
+  }
+
+  /* Ajuste para que las cards no se escalen demasiado en móvil al hacer hover */
+  .card-label:hover {
+    transform: scale(1.1);
+    z-index: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  /* Ocultar mensaje en móviles muy pequeños */
+  .card-label::after {
+      display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .cards-container {
+    grid-template-columns: 1fr; /* solo una columna para móviles muy pequeños */
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+
+
 
   
