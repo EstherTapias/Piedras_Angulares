@@ -1,10 +1,13 @@
 /* General Reset y Configuración básica */
+/* Elimina márgenes y rellenos por defecto, y usa box-sizing para incluir borde y padding en el tamaño total */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos base para el body */
+/* Usa flexbox para organizar contenido en columna, altura mínima completa de la ventana, tipografía, fondo con degradado y color de texto */
 body {
   display: flex;
   flex-direction: column;
@@ -15,7 +18,8 @@ body {
   line-height: 1.6;
 }
 
-/* Header & Footer */
+/* Estilos para header y footer */
+/* Fondo con degradado, color de texto oscuro, padding, texto centrado, peso de fuente medio, y sombra sutil para dar profundidad */
 header, footer {
   background: linear-gradient(to right, #b2dfdb, #a5d6a7);
   color: #1b3b2f;
@@ -26,10 +30,13 @@ header, footer {
 }
 
 /* Navegación entre versiones */
+/* Añade margen superior para separar del contenido anterior */
 .version-nav {
   margin-top: 1rem;
 }
 
+/* Estilos para los enlaces dentro de la navegación de versiones */
+/* Se muestran en línea con algo de espacio horizontal, fondo blanco, texto oscuro, bordes redondeados y transición suave */
 .version-nav a {
   display: inline-block;
   margin: 0 0.5rem;
@@ -41,12 +48,14 @@ header, footer {
   transition: all 0.3s ease;
 }
 
+/* Efecto hover en enlaces: fondo claro y ligero desplazamiento hacia arriba */
 .version-nav a:hover {
   background: #e8f5e8;
   transform: translateY(-2px);
 }
 
 /* Main toma todo el espacio restante para centrar contenido */
+/* Usa flexbox para centrar contenido tanto horizontal como verticalmente con padding */
 main {
   flex: 1;
   display: flex;
@@ -56,6 +65,7 @@ main {
 }
 
 /* Contenedor Grid centrado y con ancho máximo */
+/* Grid con columnas automáticas que se ajustan entre 250px y 1fr, con espacio entre tarjetas */
 .cards-container {
   display: grid;
   gap: 2rem;
@@ -64,26 +74,31 @@ main {
   max-width: 1100px;
 }
 
-/* Estructura de la tarjeta con checkbox oculto */
+/* Estructura de la tarjeta con perspectiva para efecto 3D */
+/* Altura definida para tarjetas, ligeramente aumentada respecto a versión anterior */
 .card {
   perspective: 1200px;
   height: 360px; /* aumentado de 320px */
 }
 
+/* Checkbox oculto para controlar la rotación de la tarjeta */
 .card-checkbox {
   display: none;
 }
 
+/* Etiqueta que actúa como botón para voltear la tarjeta */
+/* Ocupa todo el espacio, cambia el cursor al pasar, y transición suave para transformaciones */
 .card-label {
   display: block;
   width: 100%;
   height: 100%;
   cursor: pointer;
   transition: transform 0.3s ease;
-  position: relative; /* para posicionar boton saber más */
+  position: relative; /* permite posicionar elementos hijos absolutamentes, como el botón saber más */
 }
 
 /* Contenedor interno de la tarjeta */
+/* Posicionamiento relativo y tamaño completo, con transición para la rotación 3D */
 .card-inner {
   position: relative;
   width: 100%;
@@ -92,12 +107,13 @@ main {
   transform-style: preserve-3d;
 }
 
-/* Aplicamos la rotación cuando el checkbox está marcado */
+/* Cuando el checkbox está marcado, rota la tarjeta 180 grados en Y para mostrar el reverso */
 .card-checkbox:checked + .card-label .card-inner {
   transform: rotateY(180deg);
 }
 
-/* Estilos comunes para el front y back de la card */
+/* Estilos comunes para ambas caras (front y back) de la tarjeta */
+/* Posicionamiento absoluto, tamaño completo, padding y borde redondeado, ocultación de reverso para efecto 3D, sombra para profundidad y centrado del contenido */
 .card-front,
 .card-back {
   position: absolute;
@@ -117,17 +133,19 @@ main {
   background: #ffffff;
 }
 
-/* Colores de Front y Back cards */
+/* Color de fondo específico para el frente de la tarjeta */
 .card-front {
   background: #d0f4de;
 }
 
+/* Color de fondo y rotación para la parte trasera de la tarjeta */
 .card-back {
   background: #b2dfdb;
   transform: rotateY(180deg);
 }
 
-/* Imágenes */
+/* Imágenes en ambas caras de la tarjeta */
+/* Se ajustan al ancho máximo, altura fija, con objeto contenido y bordes redondeados */
 .card-front img,
 .card-back img {
   max-width: 100%;
@@ -137,6 +155,8 @@ main {
   margin-bottom: 0.5rem;
 }
 
+/* Estilo para imágenes verticales dentro de la tarjeta */
+/* Altura máxima limitada, centrado con margen automático, display block para mantener estructura y bordes redondeados */
 .vertical-image {
   width: auto;
   max-height: 140px;
@@ -146,7 +166,8 @@ main {
   border-radius: 10px;
 }
 
-/* Tipografía */
+/* Tipografía para títulos y párrafos */
+/* Tamaños, colores y márgenes ajustados para jerarquía visual */
 h1 {
   font-size: 2rem;
   color: #1b5e20;
@@ -170,14 +191,15 @@ p {
   color: #1f3a2c;
 }
 
-/* Efecto al pasar el cursor */
+/* Efecto hover sobre la tarjeta */
+/* Sombra ligera en el interior del contenido y escalado suave del contenedor */
 .card-label:hover .card-inner {
   box-shadow: 0 0 10px rgba(100, 255, 200, 0.15);
 }
 
 .card-label:hover {
   transform: scale(1.25);
-  z-index: 2;
+  z-index: 2; /* Asegura que la tarjeta esté encima del resto al escalar */
 }
 
 .card:hover {
@@ -185,42 +207,44 @@ p {
   box-shadow: 0 0 15px rgba(100, 255, 200, 0.2);
 }
 
-/* Indicador visual de que se puede hacer click */
-/* -- Cambiado para que aparezca arriba, más pequeño y translúcido en versión web -- */
+/* Indicador visual que informa que la tarjeta es interactiva */
+/* Texto translúcido, pequeño, posicionado arriba centrado, con transición de opacidad para aparecer solo al hover */
 .card-label::after {
   content: "👆 Haz click para voltear";
   position: absolute;
-  top: 8px; /* arriba */
+  top: 8px; /* posición arriba */
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.3); /* más translúcido */
+  background: rgba(0, 0, 0, 0.3); /* fondo translúcido */
   color: white;
   padding: 0.15rem 0.4rem;
   border-radius: 12px;
-  font-size: 0.65rem; /* tamaño más pequeño */
-  opacity: 0;
+  font-size: 0.65rem; /* texto pequeño */
+  opacity: 0; /* inicialmente invisible */
   transition: opacity 0.3s ease;
-  pointer-events: none;
+  pointer-events: none; /* no interfiere con eventos de ratón */
   z-index: 10;
-  white-space: nowrap;
+  white-space: nowrap; /* evita que el texto se divida */
 }
 
+/* Al pasar el cursor por la tarjeta, el texto aparece */
 .card-label:hover::after {
   opacity: 1;
 }
 
-/* Cambia texto cuando tarjeta está volteada */
+/* Cambia el texto del indicador cuando la tarjeta está volteada (checkbox marcado) */
 .card-checkbox:checked + .card-label::after {
   content: "👆 Haz click para regresar";
 }
 
-/* Evita efecto hover cuando la tarjeta está girada */
+/* Desactiva efectos hover de sombra y filtro cuando la tarjeta está volteada */
 .card-checkbox:checked + .card-label:hover .card-inner {
   filter: none;
   box-shadow: none;
 }
 
-/* Botón Saber más sin recuadro y con efectos */
+/* Botón "Saber más" sin borde y con efectos de color */
+/* Posicionado en la esquina inferior derecha de la tarjeta, con transición en color y cambio de cursor */
 .learn-more {
   position: absolute;
   bottom: 0.6rem;
@@ -242,7 +266,8 @@ p {
   text-decoration: underline;
 }
 
-/* Navegación activa */
+/* Estilo para el enlace activo en navegación */
+/* Fondo verde grisáceo, negrita y sombra suave para destacar */
 .version-nav a.active {
   background: #9bb99b;
   font-weight: bold;
@@ -250,71 +275,82 @@ p {
 }
 
 /* Media Queries para Responsividad */
+/* Ajustes para pantallas pequeñas (hasta 600px) */
+
+/* Reduce tamaño de título principal */
 @media (max-width: 600px) {
   h1 {
       font-size: 1.5rem;
   }
 
+  /* Ajusta altura de tarjeta y añade margen inferior para evitar superposiciones */
   .card {
       height: 350px;
-      margin-bottom: 3.5rem; /* espacio extra para evitar superposición */
+      margin-bottom: 3.5rem;
   }
 
+  /* Reduce padding interno de las caras de la tarjeta */
   .card-front,
   .card-back {
       padding: 0.8rem;
   }
 
+  /* Reduce altura de las imágenes para pantallas pequeñas */
   .card-front img,
   .card-back img,
   .vertical-image {
       height: 120px;
   }
 
+  /* Cambia enlaces de navegación para que sean bloques y tengan espacio vertical */
   .version-nav a {
       display: block;
       margin: 0.3rem 0;
   }
 
+  /* Ajusta el grid para que muestre una sola columna con más espacio entre tarjetas */
   .cards-container {
-    gap: 2.5rem; /* aumento del espacio entre tarjetas */
+    gap: 2.5rem;
     grid-template-columns: 1fr;
   }
 
-  /* Ajuste para que el cartel no tape contenido y esté más arriba en móvil */
+  /* Ajusta el texto indicador para que no tape botones o contenido en móvil */
   .card-label::after {
-    bottom: 50px; /* subido para no tapar botones o texto */
-    top: auto; /* desactivo el top para que no se sobreponga */
+    bottom: 50px; /* sube el texto */
+    top: auto; /* desactiva top para evitar superposición */
     font-size: 0.6rem;
     padding: 0.2rem 0.4rem;
     max-width: 90%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background: rgba(0, 0, 0, 0.5); /* un poco menos translúcido en móvil */
+    background: rgba(0, 0, 0, 0.5); /* menos translúcido que en desktop */
   }
 
-  /* Ajuste para que las cards no se escalen demasiado en móvil al hacer hover */
+  /* Reduce escalado al hacer hover para evitar que se salga de pantalla */
   .card-label:hover {
     transform: scale(1.1);
     z-index: 2;
   }
 }
 
+/* Para pantallas muy pequeñas (máx 500px), se oculta el mensaje indicativo para no saturar */
 @media (max-width: 500px) {
-  /* Ocultar mensaje en móviles muy pequeños */
   .card-label::after {
       display: none;
   }
 }
 
+/* Para pantallas ultra pequeñas (máx 400px), ajustes para mejor usabilidad */
+/* El grid usa solo una columna, reduce gap y añade padding lateral para evitar que el contenido toque los bordes */
 @media (max-width: 400px) {
   .cards-container {
-    grid-template-columns: 1fr; /* solo una columna para móviles muy pequeños */
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 1rem;
   }
 }
+
 
 
 
