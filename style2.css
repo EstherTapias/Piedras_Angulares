@@ -257,6 +257,7 @@ p {
 
   .card {
       height: 350px;
+      margin-bottom: 3.5rem; /* espacio extra para evitar superposición */
   }
 
   .card-front,
@@ -273,6 +274,11 @@ p {
   .version-nav a {
       display: block;
       margin: 0.3rem 0;
+  }
+
+  .cards-container {
+    gap: 2.5rem; /* aumento del espacio entre tarjetas */
+    grid-template-columns: 1fr;
   }
 
   /* Ajuste para que el cartel no tape contenido y esté más arriba en móvil */
@@ -309,6 +315,8 @@ p {
     padding: 0 1rem;
   }
 }
+
+
 
 
 

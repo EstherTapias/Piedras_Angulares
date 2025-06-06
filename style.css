@@ -165,6 +165,8 @@ p {
 .card:hover {
   filter: brightness(1.03);
   box-shadow: 0 0 15px rgba(100, 255, 200, 0.2);
+  transform: scale(1.25);
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Botón Saber más */
@@ -197,7 +199,9 @@ p {
   }
 
   .card {
-    height: 400px;
+    height: 350px; /* igual que versión click */
+    max-width: 350px; /* limitar ancho máximo igual que alto para que no se estiren mucho */
+    margin: 0 auto; /* centrar cada card */
   }
 
   .card-front,
@@ -208,7 +212,7 @@ p {
   .card-front img,
   .card-back img,
   .vertical-image {
-    height: 130px;
+    height: 120px; /* igual que versión click */
   }
 
   .version-nav a {
@@ -223,8 +227,18 @@ p {
   .cards-container {
     gap: 1.5rem;
     grid-template-columns: 1fr;
+    max-width: 360px; /* ancho máximo para contener las cards */
+    margin: 0 auto; /* centrar contenedor */
+  }
+
+  .card:hover {
+    transform: none;
+    transition: none;
   }
 }
+
+
+
 
 
 
